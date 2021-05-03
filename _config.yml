@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 title: UnilinU
 description: a taste to github pages
+timezone: Asia/Shanghai
+encoding: "utf-8"
