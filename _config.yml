@@ -3,3 +3,7 @@ title: UnilinU
 description: a taste to github pages
 timezone: Asia/Shanghai
 encoding: "utf-8"
+
+
+include:
+  README.md
