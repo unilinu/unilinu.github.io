@@ -1,24 +1,27 @@
-## [LF/CRLF](http://kuanghy.github.io/2017/03/19/git-lf-or-crlf)
-```sh
-git config --global core.autocrlf input # 提交时转换为LF，检出时不转换
-git config --global core.safecrlf true # 拒绝提交包含混合换行符的文件
-```
-## [.gitignore](https://blog.csdn.net/mingjie1212/article/details/51689606)
-```sh
-git rm -r --cached .  # 清除缓存
-git add . # 重新trace file
-git commit -m "update .gitignore" # 提交和注释
-git push origin master # 可选，如果需要同步到remote上的话
-```
-## [reset remote](https://segmentfault.com/q/1010000002898735)
-```sh
-git revert <commitId> # 未尝试过
+## IO
+- [read a string line](https://blog.csdn.net/lwgkzl/article/details/53232889)
+	1. `getline(cin, string); // 注意cin>>不读取分隔符`
+	1. `cin.getline(str*, len); // 读取分隔符\n`
+	1. `cin.get(str*, len).get(); // 不读取分隔符\n`
+	
+
+### QUEUE
+
+- [priority_queue](https://blog.csdn.net/weixin_36888577/article/details/79937886)
+
+1. **优先级队列，优先级越大越优先，越先出队**
+2. **也即是，队首优先级最高**
+3. **默认数值越大，优先级越大**
+4. **为了理解，可以认为，比较器第一个参数优先级低于第二个参数**
+
+```cpp
+// 最大顶堆
+priority_queue <int,vector<int>,less<int> >q; // 默认类型
+// 最小顶堆
+priority_queue <int,vector<int>,greater<int> > q;
+
+q.top() //访问队头元素
+q.pop // 弹出队头元素
+q.swap // 交换内容
 ```
 
-```sh
-git reset --soft <commitId>
-git stas # 暂存修改
-git push --force # 强制push,远程的最新commit被删除
-git stash pop # 释放暂存的修改，开始修改代码
-git add . -> git commit -m "massage" -> git push
-```
