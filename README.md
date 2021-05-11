@@ -14,7 +14,21 @@
 
 - [cpp-memory-model](https://paul.pub/cpp-memory-model/)
 
+## CS
+
+- [os](./os.md)
+
 ## Paradigms
+
+
+
+## Others
+
+- [intew](./intew.md)
+
+
+
+
 
 
 
