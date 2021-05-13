@@ -1,2 +1,3 @@
-.zip
-.exe
+*.zip
+*.exe
+_config.example
