@@ -108,6 +108,7 @@ TODO：
 - https://www.jianshu.com/p/486b0965c296
 - https://zhuanlan.zhihu.com/p/115912936
 - https://segmentfault.com/a/1190000003063859
+- [epoll](https://blog.csdn.net/daaikuaichuan/article/details/83862311)
 
 > 妈妈让我去厨房烧一锅水，准备下饺子
 > 阻塞：水只要没烧开，我就干瞪眼看着这个锅，沧海桑田，日新月异，我自岿然不动，厨房就是我的家，烧水是我的宿命。

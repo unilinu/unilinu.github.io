@@ -2,6 +2,11 @@
 
 - https://blog.csdn.net/high2011/article/details/59481137
 
+### 智力题
+
+- https://blog.csdn.net/qq_43518645/article/details/104118528
+- https://kknews.cc/news/remy8qn.html
+
 ### 如何应对服务端高并发？
 
 高并发问题的本质就是：资源的有限性
