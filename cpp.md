@@ -1,8 +1,18 @@
+
 ## TODO
 
 - [Static全局变量与普通全局变量 & Static关键字的不同含义 ](https://blog.csdn.net/weiyuefei/article/details/51563890)
 - https://www.cnblogs.com/clover-toeic/p/3728026.html
 - 
+## C++ Thinking
+
+[Bjarne Stroustrup's FAQ](https://www.stroustrup.com/bs_faq.html)
+
+[Bjarne Stroustrup's FAQ（中文版）](https://www.stroustrup.com/bsfaqcn.html)
+
+[Bjarne Stroustrup 的 C++ 风格与技术 FAQ（中文版）](https://www.stroustrup.com/bsfaq2cn.html)
+
+[C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
 
 ## C++ Traps
 ### IO
@@ -104,6 +114,27 @@ int main(int argc, char** argv) {
 2. 
 
 ## C++ MUST KNOW
+
+### 纯虚函数和抽象类
+
+- 纯虚函数：没有函数体的虚函数, virtual void show() = 0;
+- 抽象类：包含纯虚函数的类
+
+1. 如果我们不在派生类中覆盖纯虚函数，那么派生类也会变成抽象类
+2. 构造函数不能是虚函数，而析构函数可以是虚析构函数
+3. 当基类指针指向派生类对象并删除对象时，我们可能希望调用适当的析构函数。 如果析构函数不是虚拟的，则只能调用基类析构函数。
+
+> 关于C++为什么不支持虚拟构造函数，Bjarne很早以前就在C++
+Style and Technique FAQ里面做过回答：A
+virtual call is a mechanism to get work done given partial
+information. In particular, "virtual" allows us to call a
+function knowing only an interfaces and not the exact type of the
+object. To create an object you need complete information. In
+particular, you need to know the exact type of what you want to
+create. Consequently, a "call to a constructor" cannot be
+virtual.
+
+> Bjarne建议的解决方案是factory pattern，也就是为每一个要构建的类型再创建一个对应的factory，把问题放到factory的make方法中去解决。这也是C++中的通用解决方案。
 
 ### CONST
 
