@@ -35,73 +35,98 @@
 priority_queue <int,vector<int>,less<int> >q; // 默认类型
 // 最小顶堆
 priority_queue <int,vector<int>,greater<int> > q;
+auto cmp = [](int i, int j) { return (i>j); };
+priority_queue<int, vector<int>, decltype(cmp) > pq(nums.begin(), nums.begin()+k, cmp);
 
-q.top() //访问队头元素
-q.pop // 弹出队头元素
+// 基本操作
+pq.push() // 插入元素
+q.top() //访问堆顶元素
+q.pop // 弹出堆顶元素
 q.swap // 交换内容
 ```
 
 ### ALGO 
+- 一元/二元比较器/指示器
+
+  * `sort`接受二元比较器
+
+    ```
+    ```
+
+    
+
+  * `partition`接受一元指示器
+
+    ```
+    bind1st(less<int>, );
+    bind2nd();
+    // lamada
+    partition(first, last, [pivot](const int& em){ return pivot<em; });
+    
+    auto cmp = [](int i, int j) { return (i>j); };
+    priority_queue<int, vector<int>, decltype(cmp) > pq(nums.begin(), nums.begin()+k, cmp);
+    ```
+
+    
+
+
+
 - sort()
 
 ```
 class TestIndex{  
-public:  
-    int index;  
-    TestIndex(){  
-    }  
-    TestIndex(int _index):index(_index){  
-    }  
-    bool operator()(const TestIndex* t1,const TestIndex* t2){  
-        printf("Operator():%d,%d/n",t1->index,t2->index);  
-        return t1->index < t2->index;  
-    }  
-    bool operator < (const TestIndex& ti) const {  
-        printf("Operator<:%d/n",ti.index);  
-        return index < ti.index;  
-    }  
+public:
+    bool operator()(const TestIndex* t1, const TestIndex* t2){ return t1->index < t2->index; }  
+    bool operator < (const TestIndex& ti) const { return index < ti.index; }  
 };  
-bool compare_index(const TestIndex* t1,const TestIndex* t2){  
-    printf("CompareIndex:%d,%d/n",t1->index,t2->index);  
-    return t1->index < t2->index;  
-}  
-int main(int argc, char** argv) {  
-    list<TestIndex*> tiList1;  
-    list<TestIndex> tiList2;  
-    vector<TestIndex*> tiVec1;  
-    vector<TestIndex> tiVec2;  
-    TestIndex* t1 = new TestIndex(2);  
-    TestIndex* t2 = new TestIndex(1);  
-    TestIndex* t3 = new TestIndex(3);  
-    tiList1.push_back(t1);  
-    tiList1.push_back(t2);  
-    tiList1.push_back(t3);  
-    tiList2.push_back(*t1);  
-    tiList2.push_back(*t2);  
-    tiList2.push_back(*t3);  
-    tiVec1.push_back(t1);  
-    tiVec1.push_back(t2);  
-    tiVec1.push_back(t3);  
-    tiVec2.push_back(*t1);  
-    tiVec2.push_back(*t2);  
-    tiVec2.push_back(*t3);  
-    printf("tiList1.sort()/n");  
-    tiList1.sort();//无法正确排序  
+bool compare_index(const TestIndex* t1,const TestIndex* t2){ return t1->index < t2->index; }  
+int main(int argc, char** argv) {   
     printf("tiList2.sort()/n");  
-    tiList2.sort();//用<比较  
-    printf("tiList1.sort(TestIndex())/n");  
-    tiList1.sort(TestIndex());//用()比较  
-    printf("sort(tiVec1.begin(),tiVec1.end())/n");  
-    sort(tiVec1.begin(),tiVec1.end());//无法正确排序  
-    printf("sort(tiVec2.begin(),tiVec2.end())/n");  
-    sort(tiVec2.begin(),tiVec2.end());//用<比较  
-    printf("sort(tiVec1.begin(),tiVec1.end(),TestIndex())/n");  
-    sort(tiVec1.begin(),tiVec1.end(),TestIndex());//用()比较  
-    printf("sort(tiVec1.begin(),tiVec1.end(),compare_index)/n");  
+    tiList2.sort();//用<比较
+    tiList1.sort(TestIndex());//用()比较
+    
+    sort(tiVec2.begin(),tiVec2.end());//用<比较
+    sort(tiVec1.begin(),tiVec1.end(),TestIndex());//用()比较
     sort(tiVec1.begin(),tiVec1.end(),compare_index);//用compare_index比较  
-    return 0;  
 ｝ 
 ```
+
+- partition
+
+```
+// https://en.cppreference.com/w/cpp/algorithm/partition
+template<class ForwardIt, class UnaryPredicate>
+ForwardIt partition(ForwardIt first, ForwardIt last, UnaryPredicate p)
+{
+    first = std::find_if_not(first, last, p); // 避免无用交换
+    if (first == last) return first;
+ 
+    for (ForwardIt i = std::next(first); i != last; ++i) {
+        if (p(*i)) { // i, first可能产生步差
+            std::iter_swap(i, first);
+            ++first;
+        }
+    }
+    return first;
+}
+
+template <class ForwardIt>
+void quicksort(ForwardIt first, ForwardIt last)
+{
+    if(first == last) return;
+    auto pivot = *std::next(first, std::distance(first,last)/2);
+    ForwardIt middle1 = std::partition(first, last, 
+                         [pivot](const auto& em){ return em < pivot; }); // 小于pivot元素左交换
+    ForwardIt middle2 = std::partition(middle1, last, 
+                         [pivot](const auto& em){ return !(pivot < em); }); // 等于pivot元素左交换
+    quicksort(first, middle1); // 全是小于pivot元素
+    quicksort(middle2, last);  // 全是大于pivot元素
+ }
+```
+
+
+
+
 
 
 
@@ -115,7 +140,7 @@ int main(int argc, char** argv) {
 
 ## C++ MUST KNOW
 
-### 纯虚函数和抽象类
+### 纯虚函数/抽象类/虚函数表
 
 - 纯虚函数：没有函数体的虚函数, virtual void show() = 0;
 - 抽象类：包含纯虚函数的类
@@ -135,6 +160,33 @@ create. Consequently, a "call to a constructor" cannot be
 virtual.
 
 > Bjarne建议的解决方案是factory pattern，也就是为每一个要构建的类型再创建一个对应的factory，把问题放到factory的make方法中去解决。这也是C++中的通用解决方案。
+
+- 虚函数表
+
+  ```cpp
+  #include <iostream>
+  using namespace std;
+  class A {
+  public:
+      int i;
+      virtual void func() {}
+      virtual void func2() {}
+  };
+  class B : public A {
+      int j;
+      void func() {}
+  };
+  int main() {
+      cout << sizeof(A) << ", " << sizeof(B);  //输出 8,12
+      return 0;
+  }	
+  ```
+
+  
+
+  ![img](http://c.biancheng.net/uploads/allimg/180831/1-1PS1111S0Q6.jpg)
+
+  ![派生类的虚函数表](http://c.biancheng.net/uploads/allimg/180831/1-1PS1111SQ58.jpg)
 
 ### CONST
 

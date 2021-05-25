@@ -1,0 +1,1672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0040)https://www.stroustrup.com/bsfaq2cn.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+  <title>Bjarne Stroustrup's C++ Style and Technique FAQ（中文版）</title>  
+  <meta name="Generator" content="EditPlus">  
+  <meta name="Author" content="Antigloss">  
+  <meta name="Keywords" content="Bjarne Stroustrup&#39;s FAQ">  
+  <meta name="Description" content="Bjarne Stroustrup&#39;s FAQ">
+<style type="text/css" id="ATGT-bing-dict-result-wrapper-css">
+	div#ATGT-bing-dict-result-wrapper-reset {
+		all: initial;
+	}
+	div#ATGT-bing-dict-result-wrapper-reset * {
+		all: initial;
+		display: block;
+		font-family: sans-serif;
+		font-size: small;
+		font-weight: normal;
+		white-space: normal;
+		margin: 0 0;
+		padding: 0 0;
+	}
+	div#ATGT-bing-dict-result-wrapper-reset audio,
+	div#ATGT-bing-dict-result-wrapper-reset img,
+	div#ATGT-bing-dict-result-wrapper-reset input,
+	div#ATGT-bing-dict-result-wrapper-reset label {
+		display: inline-block;
+	}
+	div#ATGT-bing-dict-result-wrapper-reset a,
+	div#ATGT-bing-dict-result-wrapper-reset span {
+		display: inline;
+	}
+	div#ATGT-bing-dict-result-wrapper {
+		display: block;
+		position: fixed;
+		left: 2px;
+		bottom: 2px;
+		max-width: 32%;
+		z-index: 2147483647;
+		padding: 2px 2px;
+		margin: 0px 0px;
+		color: silver !important;
+		background-color: rgba(255,255,255,0.9) !important;
+		border-radius: 4px;
+	}
+	div#ATGT-bing-dict-result-wrapper .margin-for-badget {
+		margin-right: 20px;
+	}
+	div#ATGT-bing-dict-result-wrapper input.dict-provider {
+		display: none;
+	}
+	div#ATGT-bing-dict-result-wrapper input.dict-provider ~ label img {
+		border-radius: 3px;
+		transition: all 0.2s ease-in-out;
+		width: 16px;
+		vertical-align: bottom;
+	}
+	div#ATGT-bing-dict-result-wrapper input.dict-provider:not(:checked) ~ label img {
+		filter: gray; /* IE */
+		-webkit-filter: grayscale(1); /* Old WebKit */
+		-webkit-filter: grayscale(100%); /* New WebKit */
+		filter: url(resources.svg#desaturate); /* older Firefox */
+		filter: grayscale(100%); /* Current draft standard */
+	}
+	div#ATGT-bing-dict-result-wrapper[data-display-mode="Result"] input.dict-provider + label img {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+	}
+	div#ATGT-bing-dict-result-wrapper input.dict-provider ~ label img:hover {
+		width: 32px;
+	}
+	div#ATGT-bing-dict-result-wrapper .search_suggest_area ul li * {
+		font-size: x-small;
+	}
+	div#ATGT-bing-dict-result-wrapper .error {
+		color: red;
+	}
+	div#ATGT-bing-dict-result-wrapper .headword {
+		display: inline-block;
+		margin-right: 20px;
+	}
+	div#ATGT-bing-dict-result-wrapper .headword a {
+		font-weight: bold;
+		font-size: medium;
+	}
+	div#ATGT-bing-dict-result-wrapper .div_title {
+		font-weight: bold;
+	}
+	div#ATGT-bing-dict-result-wrapper .suggest_word {
+		margin-right: 5px;
+	}
+	div#ATGT-bing-dict-result-wrapper .mach_trans {
+		display: inline-block;
+		font-style: italic;
+		font-size: x-small;
+	}
+	/* a: link visited hover active, the order matters */
+	div#ATGT-bing-dict-result-wrapper a:link {
+		color: #37a;
+		background-color: rgba(255,255,255,0.9);
+		text-decoration: none;
+	}
+	div#ATGT-bing-dict-result-wrapper a:visited {
+		color: #37a;
+	}
+	div#ATGT-bing-dict-result-wrapper a:hover {
+		color: white;
+		background-color: #37a;
+		cursor: pointer;
+	}
+	div#ATGT-bing-dict-result-wrapper .pronuce {
+		display: block
+	}
+	div#ATGT-bing-dict-result-wrapper .pronuce * {
+		color: gray;
+	}
+	div#ATGT-bing-dict-result-wrapper audio {
+		width: 0;
+		height: 0;
+	}
+	div#ATGT-bing-dict-result-wrapper .pronuce a:hover {
+		color: white;
+		background-color: rgba(255,255,255,0.9);
+	}
+	div#ATGT-bing-dict-result-wrapper .mach_trans_result {
+		color: gray;
+	}
+	div#ATGT-bing-dict-result-wrapper ul {
+		list-style-type: none;
+		padding: 1px;
+		margin: 0px;
+	}
+	div#ATGT-bing-dict-result-wrapper ul li{
+		margin-top: 1px;
+		color: gray;
+	}
+	div#ATGT-bing-dict-result-wrapper ul li span.def-category {
+		float:left;
+		color: white;
+		background-color: gray;
+		text-align: center;
+		padding: 0 2px;
+		margin-right: 3px;
+		border-radius: 3px;
+	}
+	div#ATGT-bing-dict-result-wrapper a img.audioPlayer:hover {
+		opacity: 0.8;
+	}
+	div#ATGT-bing-dict-result-wrapper img.audioPlayer {
+		width: 1em;
+		height: 1em;
+	}
+/*
+	body {
+		background: gray;
+	}
+*/
+</style></head>
+
+<body>
+<center><b><font size="6"><a href="http://www.research.att.com/~bs/homepage.html" target="_blank">Bjarne Stroustrup</a> 的 C++ 风格与技术
+FAQ（中文版）</font></b></center>
+<br>
+<center><b>原作：Bjarne
+Stroustrup&nbsp;&nbsp;&nbsp;&nbsp;翻译：Antigloss</b></center>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>译者的话</b>：尽管我已非常用心，力求完美，但受水平所限，错误在所难免，还请各路高手不吝斧正。邮箱地址：Antigloss at 163 dot com。本译文是对以前紫云英的译文的补充，之前他们翻译过的内容我没有重译，故亦没有出现于本页面，想看的朋友可以自行搜索一下。
+<hr><!-- index begins here --> <br>
+<font size="5"><b>目 录</b></font>
+<ul>
+  <li> 开始：    
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#coding-standard">您可以推荐一种编写代码的标准吗？</a> </li>    
+    </ul>
+  </li>
+  <li> 类：    
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#layout-obj">C++ 的对象在内存中的存放形式是怎么样的？</a> </li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#this">为什么“this”不是引用？</a> </li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#delete-scope">为什么（对象）退出作用域时没有调用析构函数？</a> </li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#friend">“友元”违反了封装吗？</a> </li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#explicit-ctor">为什么我的构造函数不太对劲？</a></li>    
+    </ul>
+  </li>
+  <li> 类继承体系：    
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#pure-virtual">什么是纯虚函数？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#final">为何 C++ 没有 final 关键字</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#object">为什么 C++ 没有通用类对象？</a></li>    
+    </ul>
+  </li>
+  <li> 模板与泛型编程：    
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#conversion">为何 vector<b>&lt;</b>Apple*<b>&gt;</b> 不能赋值给 vector<b>&lt;</b>Fruit*<b>&gt;</b>？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#generics">模板（templates）本应被设计为“泛型（generics）”那样吗？</a></li>
+      <li><a href="https://www.stroustrup.com/bsfaq2cn.html#containers">为何 C++ 不提供多态的容器？</a></li>
+	  <li><a href="https://www.stroustrup.com/bsfaq2cn.html#slow-containers">为何标准容器效率如此低下？</a></li>
+    </ul>
+  </li>
+  <li> 内存：
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#malloc">“new”和“malloc()”的不同点何在？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#arrays">数组有何不好之处？</a></li>
+    </ul>
+  </li>
+  <li> 异常：    
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#exceptions">如何使用异常？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#ctor-exceptions">可以在构造函数里抛出异常吗？析构函数里呢？</a></li>
+    </ul>
+  </li>
+  <li> 其它语言特性：
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#callC">C++ 中如何调用 C 函数？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#callCpp">C 中如何调用 C++ 函数？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#pointers-and-references">为何 C++ 既有指针也有引用？</a></li>
+	  <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#null">我应该使用 NULL 还是 0？</a></li>
+	  <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#evaluation-order">i++ + i++ 的值是多少？</a></li>
+	  <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#undefined">为何 C++ 里有些东西是未定义的呢？</a></li>
+	  <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#static-cast">static_cast 有什么好处？</a></li>
+    </ul>
+  </li>
+  <li> 琐事及风格：
+    <ul>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#cout">“cout”怎么念？</a> </li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#char">“char”怎么念？</a></li>
+      <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#Hungarian">你如何命名变量？是否推荐匈牙利命名法？</a></li>
+	  <li> <a href="https://www.stroustrup.com/bsfaq2cn.html#call-by-reference">我应该使用按值传递还是按引用传递？</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+<hr><!-- index ends here --><!-- contents begin here -->
+<br>
+
+
+<b><font size="4"><a name="coding-standard">您
+可以推荐一种编写代码的标准吗？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++
+代码编写标准的要点是：根据使用 C++
+的具体的环境和具体目的制定一套规则。因此，没有哪一种代码编写标准是符合所有需要和所有用户的。对于一个特定的应用程序（或者公司、应用领域，等等）来
+说，一种好的代码编写标准当然比没有标准要好得多。话说回来，我看到过很多例子表明一种差劲的代码编写标准比没有标准还要更糟糕。</p>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;选择规则时，请切记细心，而且你必须对该应用领域有过硬的知识。一些最差劲的代码编写标准（“为了保护罪犯”，我不
+会提及这些名字）的作者既没有过硬的 C++
+知识，而且对其应用领域也相对无知（他们是“专家”，而非开发人员），更误以为约束总是多比少好。针对前面这种
+误解的一个反例是：某些特性的存在会导致程序员不得不使用甚至更糟糕的特性。怎么都好，请牢记，安全性、生产率等是设计和开发过程的所有部分的总和
+——而非各种语言特性的总和，更不是所有语言的总和。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;基于以上原因，我的推荐有三：</p>
+
+
+<p> </p>
+
+
+<ul>
+
+
+  
+  <ul>
+
+
+    <li> 看 Sutter 和 Alexandrescu 合著的《C++ 代码编写标准（C++ Coding
+Standards）》。Addison-Wesley 出版，ISBN
+0-321-11358-。这本书里有很多好的规则，但请把这些规则看作一套元规则（meta-rules）。更明确地说，就是把这本书当作一本关于
+“一套优秀的代码编写规则应该是怎么样的”的指南。如果你正在写代码编写标准，不看这本书将是一大损失。 </li>
+
+
+    <li> 看 <a href="http://www.research.att.com/~bs/JSF-AV-rules.pdf">JSF
+航空器 C++ 代码编写标准</a>。
+我认为这是一套关于编写对安全性和性能要求苛刻的代码的优秀规则。如果你从事嵌入式系统编程，那你应该考虑看一下这份标准。告诫：我参与了这些规则的制
+定，所以你可以认为我带有偏心。话说回来，请将你对这份标准的建设性意见发给我。这些意见可能会推动这份标准的改进——所有优秀
+的标准都会定期地被重新审视，并且根据经验和工作环境的变化而更新。如果你不是在构建苛刻的实时系统或者对安全性要求苛刻的系统，那
+你会觉得这些规则过于严格——毕竟这些规则并非为你而设（至少并非所有这些规则都是为你而设的）。 </li>
+
+
+    <li> 不要使用 C 语言代码编写标准（即使已将其修改为 C++ 版），也不要使用 10 年前的 C++
+代码编写标准（即使在那时来说是很优秀的标准）。C++ 并非（仅仅）是 C，而标准 C++ 也并非（仅仅）是标准前的 C++。 </li>
+
+
+  
+  </ul>
+
+
+</ul>
+
+
+<b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#coding-standard
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="layout-obj">C++
+的对象在内存中的存放形式是怎么样的？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;和 C 一样，C++
+也没有定义对象在内存中的存放形式，而仅仅定义了一些必须遵循的语义约束。因此，不同的编译器实现起来都有所不同。不幸的是，我知道的最好的解释出自于一
+本过时的书，而且这本书并没有描述任何当前的 C++ 实作——《<a href="http://www.research.att.com/~bs/arm.html" target="_blank">带评注的 C++ 参考手册</a>》（The Annotated C++
+Reference Manual，常简称为 ARM）。该书有一些存放形式的图例。<a href="http://www.research.att.com/~bs/3rd.html" target="_blank">TC++PL</a> 第二章也有一个简短的解释。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;基本上，C++ 简单地通过连接各个子对象来构建对象。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct
+A { int a,b; };</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;在内存中的表现就是两个 int 型变量彼此相邻。又如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct
+B : A { int c; };</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;在内存中的表现是类型为 A 的对象和 int 型变量彼此相邻，c 跟在 A 型对象的后面；也就是说，a 和 b 彼此相邻，b 和 c
+彼此相邻。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;虚函数通常是通过在含有虚函数的类的每个对象中加入一个指针（vptr）来实现的。这个指针指向一个相应的函数表（vtbl）。每个类都有其独
+特的 vtbl，所有属于同一个类的对象共享同一个 vtbl。</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#layout-obj
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="this">为什么
+“this” 不是引用？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;因为“this”被引入 C++（事实上那时还是带类的
+C）的时候，还没有引用（reference）这个概念。同样地，我遵循 Simula
+的用法而选择了“this”这个词，而不是（后来）Smalltalk
+的“self”。</p>
+
+
+<p> <b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#this
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="delete-scope">为
+什么（对象）退出作用域时没有调用析构函数？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;最简单的答案是“肯定会调用！”，不过还是先来看看一个经常伴随着这个问题的例子吧：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f()<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+p = new X;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+use p<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;也就是说，有些人误以为 new 创建的对象会在函数的最后被析构。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;基本上，只有当你希望一个对象能“生存”于其被创建的域之外时，才应该使用“
+new”。若然如此，你就需要使用“delete”来析构该对象。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+g(int i) { /* ... */ return new X(i); } // the X outlives the call of
+g()</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+h(int i)<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+p = g(i);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete
+p;<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;如果你希望一个对象只能“生存”于一个域中，那就不要使用“new”，而应该单纯地定义一个变量：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClassName
+x;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+use x<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;变量在退出作用域时会被隐式析构。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;在同一个域中使用 new 创建对象，然后使用 delete 来将之析构不但难看，而且容易出错，更是效率低下。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+fct() // ugly, error-prone, and inefficient<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+p = new X;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+use p<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete
+p;<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#delete-scope
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="friend">“
+友元”违反了封装吗？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;不，并非如此。和成员函数类似，“友元”是一种显式地授予访问权限的机制。你不能（于一个符合标准的
+程序）在不修改源代码的情况下授予你访问类的权限。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+X {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int
+i;<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+m(); // grant X::m() access<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;friend
+void f(X&amp;); // grant f(X&amp;) access<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+X::m() { i++; /* X::m() can access X::i */ }</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(X&amp; x) { x.i++; /* f(X&amp;) can access X::i */ }</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;想了解 C++ 的（数据）保护模型，可参考 <a href="http://www.research.att.com/~bs/dne.html" target="_blank">D&amp;E</a> 章节 2.10 以及 <a href="http://www.research.att.com/~bs/3rd.html" target="_blank">TC++PL</a> 章节 11.5、15.3，以及 C.11。</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#friend
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="explicit-ctor">为
+什么我的构造函数不太对劲？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;类似这样的问题千奇百怪。例如： </p>
+
+
+<ul>
+
+
+  
+  <ul>
+
+
+    <li> 为什么我明明不想复制对象，而编译器却偏偏这么做了呢？ </li>
+
+
+    <li> 如何关闭复制机制？ </li>
+
+
+    <li> 如何防止隐式转换？ </li>
+
+
+    <li> 为何 int 自动转换成了复数？ </li>
+
+
+  
+  </ul>
+
+
+</ul>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;类的默认复制构造函数和赋值运算符可以复制所有元素。例如：
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct
+Point {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int
+x,y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point(int
+xx = 0, int yy = 0) :x(xx), y(yy) { }<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+p1(1,2);<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+p2 = p1;</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;至此，p2.x==p1.x 并且 p2.y==p1.y。这可能正是你想要的（而且也是为了和 C 兼容所必需的），但是，以下代码：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Handle {<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;private:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string
+name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+p;<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle(string
+n)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:name(n),
+p(0) { /* acquire X called "name" and let p point to it */ }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Handle()
+{ delete p; /* release X called "name" */ }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(const string&amp; hh)<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle
+h1(hh);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle
+h1 = h2; // 会引起灾难！<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;在此，默认复制构造函数使得 h2.name==h1.name 并且 h2.p==h2.p。这将导致一场灾难：当函数 f()
+运行结束时，会调用 h1 和 h2 的析构函数，这就导致 h1.p 和 h2.p 所指向的对象被 delete 了两次。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;如何避免这场灾难？最简单的办法是，将复制构造函数和赋值运算符声明为私有成员，从而关闭复制机制：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Handle {<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;private:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string
+name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*
+p;</p>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle(const
+Handle&amp;); // 阻止复制<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle&amp;
+operator=(const Handle&amp;);<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle(string
+n)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:name(n),
+p(0) { /* acquire the X called "name" and let p point to it */ }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~Handle()
+{ delete p; /* release X called "name" */ }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(const string&amp; hh)<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle
+h1(hh);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle
+h1 = h2; // 编译器报错<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+...<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;如果需要复制机制，我们可以定义自己的复制构造函数和赋值运算符，让它们按我们期待的那样工作。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;现在回过头来再看看类 Point。对 Point 来说，可以使用默认的复制机制，但它的构造函数有点问题：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct
+Point {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int
+x,y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point(int
+xx = 0, int yy = 0) :x(xx), y(yy) { }<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(Point);</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+g()<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+orig; // 使用默认值 (0,0) 创建 orig <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+p1(2); // 使用 yy 的默认值 (0) 来创建 p1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(2);
+// 调用 Point(2,0);<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;为了便于创建对象（如这里的 orig 和 p1），我们为 Point
+的构造函数提供了默认参数。然后，有些人会感到惊讶的事情发生了：调用 f() 时，2 会转换成
+Point(2,0)。当我们定义一个接受单个参数的构造函数时，同时亦定义了一种类型转换方式。默认情况下，类型转换是隐式进行的。若想把类型转换改成
+显式进行，就要将构造函数声明为 explicit：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct
+Point {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int
+x,y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explicit
+Point(int xx = 0, int yy = 0) :x(xx), y(yy) { }<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(Point);</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+g()<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+orig; // 使用默认值 (0,0) 创建 orig <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+p1(2); // 使用 yy 的默认值 (0) 来创建 p1<br>
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+显式调用构造函数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(2);
+// 错误（试图进行隐式转换）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Point
+p2 = 2; // 错误（试图进行隐式转换）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pont
+p3 = Point(2); // 正确（显式转换）<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p> </p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#explicit-ctor
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="pure-virtual">什
+么是纯虚函数？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;纯虚函数是指不必在基类中定义，但必须在派生类中被覆盖（override）的函数。通过新奇的“=0”语法可将虚函数声明为纯虚函数。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Base {<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f1(); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; // 不是虚函数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual
+void f2(); &nbsp; &nbsp; &nbsp; &nbsp; // 是虚函数，但不是纯虚函数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual
+void f3() = 0;&nbsp; // 纯虚函数<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base
+b; // error: pure virtual f3 not overridden</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;在此，Base 是抽象类（因为它有一个纯虚函数），所以不能直接用它来定义对象：Base（很显然）是用来做基类的。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Derived : public Base {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+没有定义 f1：没关系<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+没有定义 f2：没关系，继承了 Base::f2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f3();<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Derived
+d; // ok: Derived::f3 覆盖了 Base::f3</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;抽象类是定义接口的非常好的工具。事实上，一个只有纯虚函数的类通常被称为接口。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;当然你也可以定义纯虚函数：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base::f3()
+{ /* ... */ }</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;这样做往往意义不大（虽然这样做可为派生类提供一些简单的公共代码），而且在派生类中仍然需要覆盖 Base::f3()。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;如果你没有在派生类中覆盖纯虚函数，那该派生类也是抽象类：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+D2 : public Base {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+没有定义 f1：没关系<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+没有定义 f2：没关系，继承了 Base::f2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+没有定义 f3：没关系，但 D2 因此也是抽象类<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2
+d; // 错误：没有覆盖纯虚函数 Base::f3</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#pure-virtual
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="final">为什么
+C++ 没有 final 关键字</a></font></b>
+<p> <a href="http://www.research.att.com/~bs/bs_faq2.html#no-derivation" target="_blank">因为无论过去，还是现在，都没有这个必要。</a></p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#final
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="object">为什么
+C++ 没有通用类对象（universal class Object）？</a></font></b>
+<p> </p>
+
+
+<ul>
+
+
+  <li>
+我们不需要这个：大多数情况下，泛型编程提供的静态类型安全机制是非常不错的替代品。其它情况可使用多继承（multiple
+inheritance）来解决。 </li>
+
+
+  <li> 不存在有用的通用类：纯粹的通用类本身不含任何语义。 </li>
+
+
+  <li> “通用”类会怂恿人们对类型和接口的考虑粗枝大叶，从而导致多余的运行时检查。 </li>
+
+
+  <li>
+使用通用基类意味着额外花销：为了使用多态，对象必须在堆中分配；这就会导致额外的内存及访问花销。堆对象天生就不支持复制语义（copy
+semantics）。堆对象没有作用域的概念（这导致<a href="http://www.research.att.com/~bs/bs_faq2.html#finally">资
+源管理</a>变得复杂化）。通用基类会怂恿 dynamic_cast 的使用及其它运行时检查。 </li>
+
+
+</ul>
+
+
+是的。我简化了论据，毕竟这只是一篇 FAQ，而非学术论文。
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#object
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="conversion">为
+何 vector<b>&lt;</b>Apple*<b>&gt;</b>
+不能赋值给 vector<b>&lt;</b>Fruit*<b>&gt;</b>？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;因为这将降低类型系统的安全性。例如：</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Apple : public Fruit { void apple_fct(); /* ... */ };<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class
+Orange : public Fruit { /* ... */ }; // Orange 没有 apple_fct()</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector<b>&lt;</b>Apple*<b>&gt;</b>
+v; // vector of Apples</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+f(vector<b>&lt;</b>Fruit*<b>&gt;</b>&amp;
+vf) // innocent Fruit manipulating function<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vf.push_back(new
+Orange); // 将 Orange 对象指针加入 vf<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void
+h()<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(v);
+// 错误：不能传递 vector<apple *=""> 给 vector<fruit *=""><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for
+(int i=0; i<b>&lt;</b>v.size(); ++i) v[i]-<b>&gt;</b>apple_fct();<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</fruit></apple></p>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;如果调用 f(v) 是合法的，我们将得到伪装成 Apple 的 Orange。</p>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 当然，也可以把语言设计成允许这种不安全的类型转换，然后依赖动态类型检查保证访问的合法性。这将导致每次访问 v
+的成员时，都要进行运行时检查，而且 h() 也必须在遇到 v 的最后一个元素后抛出异常。</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#conversion
+</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="generics">模板
+（templates）本应被设计为“泛型（generics）”那样吗？</a></font></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;非也。generics 其实是为抽象类而设的语法；亦即，利用 generics（无论是 Java generics 或 C#
+generics），你从此不再需要定义精确的接口，但相对地，你也要为此付出诸如虚函数调用以及/或者动态类型转换的花销。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates
+通过其各种特性的组合（整型模板参数（integer template
+arguments）、特化（specialization）、同等对待内建/用户定义类型等），可支持泛型编程（generic
+programming）、模板元编程（template metaprogramming）等。Templates
+带来的灵活性、通用性，以及性能都是“generics”不能比美的。STL 就是最好的例子。</p>
+
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;不过，Templates
+带来灵便的同时，亦带来了一些不尽人意的后果——错误检查滞后、出错信息非常糟糕。目前，可通过 <a href="http://www.research.att.com/~bs/bs_faq2.html#constraints" target="_blank">constraints classes</a> 间接解决这个问题。C++0x
+将引入 concepts 来直接解决这个问题（参考<a href="http://www.research.att.com/~bs/papers.html" target="_blank">我的论文</a>、<a href="http://www.research.att.com/~bs/WG21.html" target="_blank">提案</a>，以及<a href="http://www.open-std.org/jtc1/sc22/wg21/" target="_blank">标
+准委员会网站的所有提案</a>）。</p>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#generics
+</p>
+
+
+<p></p>
+
+
+<hr><b><font size="4"></font></b>
+<h2><a name="containers">为何 C++ 不提供多态的（heterogeneous）容器？</a></h2>
+&nbsp; &nbsp; &nbsp; &nbsp; C++ 标准库提供了一套非常好用的、静态类型安全的、高效的容器。例如 vector、list，以及 map：
+<pre>	    vector&lt;int&gt; vi(10);<br>	    vector&lt;Shape*&gt; vs;<br>	    list&lt;string&gt; lst;<br>	    list&lt;double&gt; l2<br>	    map&lt;string,Record*&gt; tbl;<br>	    map&lt; Key,vector&lt;Record*&gt; &gt; t2;<br></pre>
+&nbsp; &nbsp; &nbsp; &nbsp; 所有优秀的 C++ 教材都有对这些容器的描述。应该优先使用标准容器，而非<a href="https://www.stroustrup.com/bsfaq2cn.html#arrays">数组</a>和“自制的”容器，除非你有很充分的不使用 STL 的理由。
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 这些容器都是单态的；亦即，它们的元素是同一类型的。如果你希望某个容器能保存多种类型的元素，必须使用联合体或者在容器里保存指向多态类型的指针（这个方法通常更好）。一个经典的例子是：<br>
+</p>
+<pre>	    vector&lt;Shape*&gt; vi; // 该 vector 保存指向 Shape 的指针<br></pre>
+&nbsp; &nbsp; &nbsp; &nbsp; 在此，vi 的元素可以是从 Shape 派生出来的任何类型（的指针）。亦即，既可以说
+vi 是单态的，因为其所有元素都是 Shape（精确地说是指向 Shape 的指针），也可以说它是多态的，因为它可以保存多种类型的
+Shape，例如 Circles、Triangles 等等。
+<p>&nbsp; &nbsp; &nbsp; &nbsp;
+所以，可以说，所有容器（无论任何语言）都是单态的，因为为了使用它们，必须有一个可供用户用来访问其中所有元素的公共接口。提供多态容器的语言，其实无
+非是容器里的元素都提供了一个标准的接口。例如，Java&nbsp;collection 提供的容器保存的是 Object 类型（的引用），可用（公共的）Object 接口来获取元素的真正类型。</p>
+
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;C++ 标准库提供单态的容器，因为大多数情况下，它们常用且易用，并能提供尽可能好的编译时错误信息，而且没有不必要的运行时开销。</p>
+&nbsp; &nbsp; &nbsp; &nbsp; 如果你需要在 C++ 中使用多态的容器，可为所有元素定义一个公共的接口，然后即可制出这样的容器。例如：
+
+
+<pre>	    class Io_obj { /* ... */ }; // 进行 I/O 所需的接口<br><br>	    vector&lt;Io_obj*&gt; vio;    // 如果你想直接管理指针<br>	    vector&lt; Handle&lt;Io_obj&gt; &gt; v2; // 如果你想用“智能指针”来处理各个对象<br></pre>
+&nbsp; &nbsp; &nbsp; &nbsp; 如非必要，绝对不要使用最底层的实现细节：
+<pre>	    vector&lt;void*&gt; memory; // 很少用到<br></pre>
+&nbsp; &nbsp; &nbsp; &nbsp; 辨别你是否“走入底层”的一个很好的办法是，看看你的代码里是否夹杂着显式类型转换。
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 在某些程序里，也可以使用 Any 类（例如 Boost::Any）：
+</p>
+
+
+<pre>	    vector&lt;Any&gt; v;<br></pre>
+
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#containers</p>
+<hr><br>
+
+<b><font size="4"><a name="slow-containers">为何标准容器效率如此低下？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不，它们的效率并不低下。或许“和什么比较？”会是一个更有用的回答。当人们抱怨标准库容器的性能时，通常会是以下三个现实问题之一：
+</p><ul><ul>
+	<li> 复制开销
+	</li><li> 查表很慢
+	</li><li> 我写的（浸入式）链表比 std::list 要快得多
+</li></ul></ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在优化之前，请先考虑是否真有性能问题。在我收到的大多数案例中，性能问题只是理论上的或者只存在于想象中：首先仔细思量，除非必要，就不要优化。<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;让我们一个接一个地来分析这些问题。通常，vector<b>&lt;</b>X<b>&gt;</b> 要慢于某些人专门写的 My_container<b>&lt;</b>X<b>&gt;</b>，因为 My_container<b>&lt;</b>X<b>&gt;</b> 的实现是“一个保存指向 X 的指针的容器”。标准容器保存值的拷贝，当你将一个值放入容器时，该值是被复制进去的。对小型的值来说，这是无可挑剔的，但对大型对象来说，这又是非常的不合适的：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector<b>&lt;</b>int<b>&gt;</b> vi; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector<b>&lt;</b>Image<b>&gt;</b> vim; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ... <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i = 7; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Image im("portrait.jpg");	// 使用文件来初始化 Image <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ... <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vi.push_back(i);	// 将 i（的一个拷贝）放入 vi <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vim.push_back(im);	// 将 im（的一个拷贝）放入 vim </p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假若 portrait.jpg 有好几兆那么大，而且 Image 是值语义（value semantics。例如，复制赋值和复制构造会创建新的拷贝），那么 vim.push_back(im) 的开销无疑是非常大的。但——俗话说得好——不要做赔本的买卖。取而代之，你应该使用容器来保存句柄或者指针。例如，如果 Image 是引用语义（reference semantics），那么上面的代码招致的仅仅是调用复制构造函数的开销，而且这个开销和大多数图像处理操作相比是微不足道的。如果某些类，比如 Image，因为一些合适的理由，必须采用复制语义（copy semantics），那么使用容器来保存其指针通常是个合理的解决方案：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector<b>&lt;</b>int<b>&gt;</b> vi; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector<b>&lt;</b>Image<b>&gt;</b> vim; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ... <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Image im("portrait.jpg");	// 使用文件来初始化 Image <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ... <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vi.push_back(7);	// 将 i（的一个拷贝）放入 vi <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vim.push_back(&amp;im);	// 将 &amp;im（的一个拷贝）放入 vim </p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自然而然，如果你使用指针，就必须考虑资源管理的问题，不过，保存指针的容器本身就可以是一个有效且低开销的资源处理器（通常，你需要这么一种容器：它带有用于删除“属于它的”对象的析构函数）。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个常见的现实问题是使用 map 来处理数量庞大的 (string,X) pair。map 适用于处理相对小型的容器（例如好几百或好几千个元素——访问 10000 个元素的 map 中的一个元素需要大约 9 次比较）。这些相对小型的容器的“小于”比较应该是低开销的，并且不能构建出优秀的哈希函数。如果你要处理大量字符串，而且也有一个优秀的哈希函数，那么你应该使用哈希表。标准委员会的技术报告（Tecnical Report）中定义的 unordered_map 目前已经广泛可用，而且远远胜于大多数人的“私藏佳酿”。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时，你可以使用 (const char*,X) pair 来代替 (string,X) pair，从而提高程序效率。但切记 <b>&lt;</b> 并不能比较 C 风格的字符串。而且，如果 X 很庞大，你还是有可能遇到复制问题（可选用一种常用办法来解决）。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浸入式链表当然可以很快。然而，首先你应该考虑一下你是否需要使用链表：vector 更加紧凑，因此它比链表更小，而且在很多情况下也比链表更快——甚至于进行插入/删除操作时亦是如此。例如，如果你的 list 只不过拥有为数不多的整型元素，那么使用 vector 无疑会明显快于 list（无论任何链表）。而且，浸入式链表不能直接保存内建类型（int 没有 link 成员变量）。所以，假设你真的需要使用链表，而且你可以为每种元素类型提供 link 成员变量，才可以使用浸入式链表。每当进行插入元素的操作，标准库 list 默认会进行一次内存分配，然后将该元素复制到新分配好的空间里（而每当进行删除元素的操作，list 都会进行一次内存回收）。对于使用默认分配器的 std::list 来说，这样做可能会带来很明显的性能损失。对于复制开销不大的小型元素，可以考虑使用经过优化的分配器。只有当你需要使用链表并且不能错失哪怕是一盎司的性能提升时，才应该使用自制的浸入式链表。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人们有时会担心 std::vector 的增长开销。我过去也担心这个，并且使用 reserve() 来优化其增长。在仔细思量代码，并且一次又一次地在实际程序中遇到难以计算 reserve() 所带来的性能提升这个麻烦之后，我停止了使用 reserve()，除非是为了避免迭代器失效（我的代码中很少有这种情况）而不得不使用它。重申：优化前请仔细思量。
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#slow-containers</p>
+
+
+<p></p>
+
+
+<hr><br>
+
+
+<b><font size="4"><a name="malloc">“new”和“malloc()”的不同点何在？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“malloc()”是个函数，接受（字节）数目作为参数；它返回一个指向未初始化空间的 void * 指针。“new”是个运算符，接受一个类型以及一套该类型的初始值（可选）作为参数；它返回一个指向已被初始化（可选）的该类型的对象的指针。当你想为带有非平凡初始化语义（non-trivial initialization semantics）的用户自定义类型分配空间时，这两者的区别是很明显的。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class Circle : public Shape {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cicle(Point c, int r);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 没有默认构造函数<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class X {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X();	// 默认构造函数<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int n)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void* p1 = malloc(40);	// 分配 40 个（未初始化的）字节</p><p>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* p2 = new int[10];	// 分配 10 个未初始化的ints<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* p3 = new int(10);	// 分配 1 个初始化为 10 的 int<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* p4 = new int();	// 分配 1 个初始化为 0 的 int<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* p4 = new int;	// 分配 1 个未初始化 int</p><p>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Circle* pc1 = new Circle(Point(0,0),10); // 分配一个使用指定参数构造的 Circle<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Circle* pc2 = new Circle;	// 错误：没有默认构造函数</p><p>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X* px1 = new X;		// 分配一个默认构造的 X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X* px2 = new X();	// 分配一个默认构造的 X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X* px2 = new X[10];	// 分配 10 个默认构造的 X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意，当你使用“(值)”来指定初始值时，分配到的内存将被初始化为该指定值。不幸的是，这种方法对数组无能为力。通常，vector 是动态数组的一个很好的替代品（例如，vector 是异常安全[exception safety]的）。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每当使用 malloc()，你必须考虑初始化问题以及将其返回的指针转换为合适的类型。你也不得不考虑你是否已经分配了足够的空间。当你把初始化算进去后，malloc() 和 new 的性能差异就是零。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;malloc() 通过返回 0 来表示内存耗尽；而 new 通过抛出异常来报告内存分配和初始化错误。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用 new 创建的对象都要用 delete 来销毁。使用 malloc() 分配的内存空间都要用 free() 来释放。</p>
+
+<p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#malloc</p>
+<hr><br>
+
+<b><font size="4"><a name="arrays">数组有何不好之处？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从时间和空间的角度来讲，数组是访问内存中连续对象的最佳结构。然而，它同时也是非常底层的数据结构，不当地使用它常常会导致大量潜在的错误。而且，基本上在所有需要用到数组的地方，我们都有更好的替代品。我所说的“更好”是指更易于读写、不易导致错误，以及同等效率。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和数组如影随形的两个基本问题是：
+
+</p><ul><ul>
+	<li> 数组不知道其自身的长度
+	</li><li> 稍有风吹草动，数组的名字就会转换成指向其首元素的指针
+</li></ul></ul>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;思考以下一些例子：<p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int a[], int s)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 处理 a；a 的长度是 s<br>		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; s; ++i) a[i] = i;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int arr1[20];<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int arr2[10];</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(arr1,20);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(arr2,20);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个函数调用会玷污不属于 arr2 的内存。通常，程序员都不会传递错误的长度给函数 f，但传递参数是个额外的负担，而且不时都会有些人犯错（传递了错误的长度）。我更喜欢使用标准库里的 vector，这样写出来的程序更加简单明了：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(vector&lt; int &gt;&amp; v)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 处理 v<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; v.size(); ++i) v[i] = i;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; int &gt; v1(20);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; int &gt; v2(10);</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(v1);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(v2);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为数组不知道其自身的长度，所以不能直接进行数组赋值：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int a[], int b[], int size)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = b;	// 并非数组赋值<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memcpy(a,b,size);	// a = b<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同样，我更喜欢使用 vector：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g(vector&lt; int &gt;&amp; a, vector&lt; int &gt;&amp; b, int size)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = b;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector 的另一个好处是，memcpy() 不能正确处理带有复制构造函数的元素，例如 string：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(string a[], string b[], int size)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = b;	// 并非数组赋值<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memcpy(a,b,size);	// 灾难<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g(vector&lt; string &gt;&amp; a, vector&lt; string &gt;&amp; b, int size)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a = b;	<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数组的大小在编译时就已固定：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int S = 10;</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int s)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a1[s];	// 错误<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a2[S];	// ok</p><p>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 若想增加 a2 的长度，必须改用 malloc() 从堆中分配数组空间，<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 然后使用 realloc() 改变分配到的空间的大小<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为对比：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int S = 10;</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g(int s)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; int &gt; v1(s);	// ok<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; int &gt; v2(S);	// ok<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v2.resize(v2.size()*2);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C99 允许可变长的局部数组，但 VLA（变长数组，variable-length array）也有其独特的问题。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在 C 和 C++ 中，数组名“退化”为指针的方式是基本常识。然而，数组退化和继承“互动”时，是非常不妙的。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class Base { void fct(); /* ... */ };<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class Derived { /* ... */ };</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(Base* p, int sz)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; sz; ++i) p[i].fct();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base ab[20];<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Derived ad[20];</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(ab,20);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(ad,20);	// 灾难！<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在后一个函数调用里，Derived[] 被认为是 Base[]，以至于当 sizeof(Derived)!=sizeof(Base) 时，余下的代码不再能正常工作。如果我们使用 vector 的话，在编译时就能捕捉到这个错误：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(vector&lt; Base &gt;&amp; v)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; v.size(); ++i) v[i].fct();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; Base &gt; ab(20);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt; Derived &gt; ad(20);</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void g()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(ab);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(ad);	// 错误：不能将 vector&lt; Derived &gt; 转换成 vector&lt; Base &gt;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我发现大量 C 和 C++ 初学者的程序错误都和（错误地）使用数组有关。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#arrays</p>
+<hr><br>
+
+<b><font size="4"><a name="exceptions">如何使用异常？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请参考 <a href="http://www.research.att.com/~bs/3rd.html" target="_blank">TC++PL</a> 章节 8.3、第十四章，以及<a href="http://www.research.att.com/~bs/3rd_safe0.html" target="_blank">附录 E</a>。附录聚焦于如何为“苛刻的”应用程序编写异常安全（exception-safe）的代码，它并非写给初学者看的。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++ 里，异常用于发出一种信号，表示发生了“本地”处理不了的错误，比如构造函数里某个获取资源的操作失败了。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class Vector {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int sz;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* elem;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class Range_error { };<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector(int s) : sz(s) { if (sz &lt; 0) throw Range_error(); /* ... */ }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不要简单地将异常当作又一种从函数中返回一个值的方法。大多数用户以为异常处理代码等同于错误处理代码（因为 C++ 语言的定义怂恿他们这么想），他们的代码优化方式也反映了这种想当然的“以为”。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一种关键的技术被称之为<a href="http://www.research.att.com/~bs/bs_faq2.html#finally" target="_blank">资源获取即初始化</a>（有时被简称为 RAII），该技术使用带有析构函数的类来使资源管理有序化。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void fct(string s)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File_handle f(s,"r");	// File_handle 的构造函数打开名为 s 的文件<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 使用 f<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} // File_handle 的析构函数在此关闭文件</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就算 fct() 中“使用 f”的那部分代码抛出了异常，析构函数仍然会被执行，所以文件会被正常关闭。下面这种常见的不安全的用法则恰恰相反：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void old_fct(const char* s)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE* f = fopen(s,"r");	// 打开名为 s 的文件<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 使用 f<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fclose(f);	// 关闭文件<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果 old_fct 中“使用 f”的那部分代码抛出了异常（或者简单地返回了），那么文件就没有被关闭。在 C 程序里，longjmp() 是又一种危险。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#exceptions</p>
+<hr><br>
+
+<b><font size="4"><a name="ctor-exceptions">可以在构造函数里抛出异常吗？析构函数里呢？</a></font></b><p>
+</p><ul>
+	<li>可以：当你不能正常地初始化（构造）对象时，你应该在构造函数里抛出异常。没有任何其它方法比抛出异常退出构造函数更合适了。
+	</li><li>不然：你可以在析构函数里抛出异常，但这个异常必须不能越过析构函数；如果因为抛出异常而退出了析构函数，任何糟糕的情况都可能发生，因为这违反了标准库及 C++ 语言本身的基本规则。不要这么做。
+</li></ul>
+更详细的实例和解释尽在 <a href="http://www.research.att.com/~bs/3rd.html" target="_blank">TC++PL</a> <a href="http://www.research.att.com/~bs/3rd_safe0.html" target="_blank">附录 E</a>。<p>
+给你一个忠告：在某些“苛刻的”实时系统项目中，不该使用异常。例如，请参考 <a href="http://www.research.att.com/~bs/JSF-AV-rules.pdf" target="_blank">JSF 航空器 C++ 代码标准</a>。</p><p>
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#ctor-exceptions</p>
+<hr><br>
+
+<b><font size="4"><a name="callC">C++ 中如何调用 C 函数？ </a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将 C 函数声明为``extern "C"''（在你的 C++ 代码里做这个声明），然后调用它（在你的 C 或者 C++ 代码里调用）。例如：</p><p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// C++ code<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" void f(int);	// 方法一<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" {	// 另一种声明方法<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int g(double);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double h();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void code(int i, double d)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int ii = g(d);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double dd = h();<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数的定义可类似如下所示：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* C code: */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int i)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int g(double d)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double h()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意，声明里使用的可是 C++ 的类型规则，而不是 C 的哦。所以调用声明为 ``extern "C"'' 的函数时，传递的参数个数必须正确。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// C++ code<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void more_code(int i, double d)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double dd = h(i,d);	// 错误：不速之参数<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#callC</p>
+<hr><br>
+
+<b><font size="4"><a name="callCpp">C 中如何调用 C++ 函数？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将 C++ 函数声明为``extern "C"''（在你的 C++ 代码里做这个声明），然后调用它（在你的 C 或者 C++ 代码里调用）。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// C++ code:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" void f(int);</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int i)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后，你可以这样使用 f()：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* C code: */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int);</p><p>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void cc(int i)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然，这招只适用于非成员函数。如果你想要在 C 里调用成员函数（包括虚函数），则需要提供一个简单的包装（wrapper）。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// C++ code:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class C {<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual double f(int);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" double call_C_f(C* p, int i)	// wrapper function<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return p-&gt;f(i);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后，你就可以这样调用 C::f()：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* C code: */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double call_C_f(struct C* p, int i);</p><p>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void ccc(struct C* p, int i)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double d = call_C_f(p,i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果你想在 C 里调用重载函数，则必须提供不同名字的包装，这样才能被 C 代码调用。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// C++ code:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(int);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f(double);</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" void f_i(int i) { f(i); }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern "C" void f_d(double d) { f(d); }</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后，你可以这样使用每个重载的 f()：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* C code: */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f_i(int);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f_d(double);</p><p>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void cccc(int i,double d)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f_i(i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f_d(d);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* ... */<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意，这些技巧也适用于在 C 里调用 C++ 类库，即使你不能（或者不想）修改 C++ 头文件。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#callCpp</p>
+<hr><br>
+
+<b><font size="4"><a name="pointers-and-references">为何 C++ 既有指针也有引用？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++ 的指针继承于 C，若要移除指针，势必造成严重的兼容性问题。引用有几方面的用处，但我在 C++ 中引入它的主要目的是为了支持运算符重载。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f1(const complex* x, const complex* y)	// 没有引用<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complex z = *x+*y;	// 难看<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void f2(const complex&amp; x, const complex&amp; y)	// 使用引用<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complex z = x+y;	// 看起来不错<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更一般地，如果你想要同时拥有指针功能和引用功能，那就需要两种不同的类型（C++ 里就是这么干的）或者对一个单独的类型有两套不同的操作。例如，如果采用单一类型的话，则需要有给被引用的对象赋值的操作以及给引用/指针赋值的操作。这可通过使用不同的运算符来完成（Simula 里就是这么干的）。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ref<b>&lt;</b>My_type<b>&gt;</b> r :- new My_type;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r := 7;			// 赋值给对象<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r :- new My_type;	// 赋值给引用<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或者，你也可以依赖类型检测系统（重载）。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ref<b>&lt;</b>My_type<b>&gt;</b> r = new My_type;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = 7;			// assign to object<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r = new My_type;	// assign to reference</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#pointers-and-references</p>
+<hr><br>
+
+<b><font size="4"><a name="null">我应该使用 NULL 还是 0？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++ 里，NULL 的定义就是 0，所以到底使用哪个只是个审美问题。我个人倾向于避免使用宏，所以我使用 0。还有个问题是，有些人误以为 NULL 和 0 并不相同，并且/或者以为 NULL 不是整数。在标准前的代码里，NULL 有时被定义成不恰当的东西，因此不得不避免使用它。不过现今这已不常见。如果你必须给空指针起个名字，那就叫它 nullptr；C++0x 中将会这么叫。届时，“nullptr”将会是个关键字。
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#null</p>
+<hr><br>
+
+<b><font size="4"><a name="evaluation-order">i++ + i++ 的值是多少？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未定义。基本上，无论 C 还是 C++，如果你在同一个表达式中两次读取同一个变量，并且还对该变量进行写操作，那么结果就是未定义的。不要这么干。还有个例子是：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v[i] = i++;</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相关的例子：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(v[i],i++);</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在此，因为函数参数的求值顺序是未定义的，所以结果也是未定义的。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之所以不定义求值顺序，是为了让编译器有更大的自由度去生成性能更高的代码。编译器应该为类似这些例子发出警告，因为这些都是典型的微小错误（或者说是潜在的微小错误）。很遗憾，尽管数十年的工夫过去了，大多数编译器仍然不会为此发出警告，而将这项工作交给了专门的、独立的、并且鲜有人用的工具。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#evaluation-order</p>
+<hr><br>
+
+<b><font size="4"><a name="undefined">为何 C++ 里有些东西是未定义的？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为机器的不同以及 C 里面也有很多未定义的东西。ISO C++ 标准里有以下术语的详细定义：“未定义”、“未指明（unspecified）”、“由实现定义”，以及“合乎语法的（well-formed）”。注意，这些术语的含义和 ISO C 标准里的定义不太相同，而且也和它们常见的用法不同。假若没有察觉到不同的人对这些术语的认识会有所偏差，讨论问题的时候常常会极度混乱。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是一个正确的答案，虽然可能不尽人意。和 C 一样，C++ 力图榨干硬件的每一滴血。这就是说，C++ 必须使用各种特定机器的“自然”方式来和硬件实体（位、字节、字、地址、整数计算，以及浮点数计算等）打交道，而不是我们想怎么搞就怎么搞。注意，很多被人们称为“未定义”的“东西”，事实上都是“由实现定义”的，所以只要了解我们正在使用的机器，就可以编写出完美的专门代码。整数的大小以及浮点数的取整行为正是如此。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面这个关于未定义行为的例子可能是最广为人知且臭名昭彰的：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a[10];<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[100] = 0;	// 范围错误<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* p = a;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p[100] = 0;	// 范围错误（除非赋值之前，p 已经指向了另一段足够大的内存空间）</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++（和 C）中数组和指针的概念是对机器中内存和地址概念的直接表述，所以没有任何额外开销。指针的基本操作直接被映射成机器指令，不会进行范围检测。进行范围检测会影响运行时效率以及生成代码的大小。C 是被设计来编写操作系统的，要和汇编代码拼速度，所以这么决定（不检测范围）是必须的。同样，和 C++ 不同的是，即使编译器生成了检测错误的代码，C 也没有报告错误的合适的方法：C 没有异常。C++ 跟随 C 是为了与之兼容以及直接和汇编竞赛（在 OS、嵌入式系统以及数值计算领域）。如果你需要范围检测，可用一个合适的带检测的类（vector、智能指针、string 等）。好的编译器可在编译时捕捉到 a[100] 越界了，然而，要判定 p[100] 是否越界就要困难得多。一般来说，在编译时是不可能捕捉到所有范围错误的。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其它关于未定义行为的例子起源于编译模型。编译器不能检测到各个单独的编译单元里，对象或者函数的定义是否不一致。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// file1.c:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct S { int x,y; };<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int f(struct S* p) { return p-&gt;x; }</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// file2.c:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct S { int y,x; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int main()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct S s;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.x = 1;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x = f(&amp;s);	// x!=ss.x !!<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 2;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在 C 和 C++ 里，编译 file1.c 和 file2.c 后，将它们链接成为同一个程序是非法的。链接器应该能捕捉到 S 的定义不一致，但它没有必须这么做的义务（大多数编译器都不捕捉）。很多情况下，很难捕捉各个单独的编译单元之间的不一致性。确保使用头文件的一致性有助于最大限度地减少这种问题。链接器也有正在不断改善的好兆头。注意，C++ 链接器捕捉几乎所有和函数声明不一致有关的错误。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后，我们来看一些非常恼人的表达式的未定义行为（很明显，应该对这些行为进行定义）。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void out1() { cout <b>&lt;</b><b>&lt;</b> 1; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void out2() { cout <b>&lt;</b><b>&lt;</b> 2; }</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int main()<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i = 10;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int j = ++i + i++;	// j 的值未定义<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f(out1(),out2());	// 输出 12 或者 21<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j 的值是未定义的，这是为了允许编译器生成最优化的代码。据称，和确保“平常地从左到右进行求值”相比，让编译器拥有求值顺序的自由这种做法能生成明显高效的多的代码。我不这么认为，但目前无数的编译器都利用了这种自由，而且有不少人热烈地为这种自由呐喊，所以要改变它并非易事，而且可能需要数十年的时间才能被整个 C 和 C++ 世界的人接受。我很失望，并非所有编译器都能为类似 ++i+i++ 这样的代码发出警告。类似地，参数的求值顺序也是未指明的。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我觉得，未定义、未指明或者由实现定义等等的“东西”实在是太多了。然而，这说起来容易，甚至也很容易给出这样的例子，但是要修正却太难了。不过，避免这些问题从而编写出可移植的代码也并非什么难事。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#undefined</p>
+<hr><br>
+
+<b><font size="4"><a name="static-cast">static_cast 有什么好处？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总的来说，应该尽量避免类型转换（dynamic_cast 除外）。使用类型转换常常会引起类型错误或者数值截断。甚至于看起来“无辜”的类型转换也有可能变成很严重的问题，如果在开发或者维护期间，其中一个相关的类型改变了的话。例如，下面这个是什么意思：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = (T)y;</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们不得而知。这取决于类型 T 以及 x 和 y 的类型。T 可能是类的名字、typedef 或者模板参数。可能 x 和 y 都是标量变量，而 (T) 代表值的转换。也可能 x 是 y 的派生类的对象，而 (T) 是一个向下转换（downcast）。还可能 x 和 y 是不相关类型的指针。由于 C 风格的类型转换 (T) 可用于表述很多逻辑上不同的操作，所以编译器很难捕捉误用。同样的道理，程序员不可能精确地知道类型转换到底做了什么。有些菜鸟程序员认为这是一个有利条件，但假若他们错误地判断了形势，将会导致许多细微的错误。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“新风格的类型转换”因此应运而生，它给予了程序员更清晰地表达他们的真实意图的机会，也使得编译器能捕捉到更多错误。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int a = 7;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double* p1 = (double*) &amp;a;		// ok（但指向的并非 double 类型的对象）<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double* p2 = static_cast<b>&lt;</b>double *<b>&gt;</b>(&amp;a);		// 错误<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double* p2 = reinterpret_cast<b>&lt;</b>double *<b>&gt;</b>(&amp;a);	// ok：我真的想这么干</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int c = 7;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* q1 = &amp;c;			// 错误<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* q2 = (int*)&amp;c;		// ok（但 *q2=2; 仍然是不合法的代码，而且有可能失败）<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* q3 = static_cast<b>&lt;</b>int *<b>&gt;</b>(&amp;c);	// 错误：static_cast 不能去除 const 属性<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int* q4 = const_cast<b>&lt;</b>int *<b>&gt;</b>(&amp;c);	// 我的确想这么干</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_cast 所允许的转换都比需要使用 reinterpret_cast 才能进行的转换更安全，更不易出错。大体上，可以直接使用 static_cast 转换后的值，而无需将其再转换成原来的类型。而由 reinterpret_cast 得到的值却总是应该被转换成原来的类型后才使用，这样才能确保可移植性。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;引入新风格类型转换的第二个原因是，C 风格的类型转换在程序中难以被发现。例如，在普通的编辑器或者文字处理软件里，你不能方便地查找类型转换。C 风格类型转换的这一隐秘性实在是糟透了，因为类型转换潜在着极其高的破坏性。丑陋的操作应该使用丑陋的语法形式。这个事实也是选择新风格类型转换语法的部分依据。更深一层的原因是，让新风格的类型转换语法和模板语法一致，这样程序员就能编写自己的类型转换，尤其是带运行时检查的类型转换。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或许，因为 static_cast 很难看，而且也相对难拼，所以你更可能会充分考虑后才决定是否使用它？这很好，因为现代 C++ 里，类型转换真的是最容易避免的。</p><p>
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#static-cast</p>
+<hr><br>
+
+<b><font size="4"><a name="cout">“cout”怎么念？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“cout”读作“斯—奥”。“c”代表“character（字符）”，因为 iostream 将值和字节（char）形式相映射。
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#cout</p>
+<hr><br>
+
+<b><font size="4"><a name="char">“char”怎么念？</a></font></b><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“char”通常念作“嚓”，而非“咔”。这看起来不太符合逻辑，因为“character”念作“咔啦克特”，但也从来没有人就逻辑问题非议过英文发音 (pronunciation，并不写作“pronounciation” :-) 和拼写。
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#char</p>
+<hr><br>
+
+<b><font size="4"><a name="Hungarian">你如何命名变量？是否推荐匈牙利命名法？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不，我并不推荐“匈牙利命名法”。我认为“匈牙利命名法”（在变量名中嵌入类型的缩写）是一种对隐式类型语言来说行之有效的技巧，但对支持泛型编程和面向对象编程（这两种编程范型都是基于类型和参数来选择合适的操作）的语言来说，它却是完全不合适的。在这种情况下，“把对象的类型用作名字的一部分”不仅复杂化了抽象，更限制了抽象的程度。在不同程度上，我对各种将语言技术细节信息（例如：作用域、存储类型、语法类别）嵌入（变量）名字的方案都持有保留态度。我同意在某些情况下，将类型提示嵌入变量名会很有帮助，但大多数情况下，特别是随着软件的发展，这会导致维护危机，甚至会严重损害优秀的代码。像躲避瘟疫一般地远离它吧。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，我不喜欢根据类型命名变量；我喜欢并推荐什么？根据功能命名变量（函数、类型等等）。选择有意义的名字；亦即，选择有利于别人读懂你的程序的名字。甚至你自己往往也会难以理解你的程序到底是要干嘛用的，如果你在程序中胡乱使用“易于拼写”的名字，例如 x1、x2、s3、p7 等等。缩写词和首字母缩写词很容易混淆视听，所以应该“省点儿”用这种词。首字母缩写词更是应该尽可能地避免。比如 mtbf、TLA、myw、RTFM、NBV 等等。此时此刻，它们的含义可能显而易见。但几个月过后，任谁也不敢担保一定不会忘掉其中任何一个（的含义）。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;短小的名字，例如 x 和 i，如果按传统习惯来用的话，是有意义的；亦即，x 只被用作局部变量或者参数，而 i 用作循环计数器。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不要使用过长的名字；它们难以拼写，并使代码行变得很长，以致不能完全显示于屏幕上，而且也不易于阅读。下面这些变量名看起来不错：</p><p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;partial_sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element_count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;staple_partition</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这两个就太长了点：</p><p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the_number_of_elements&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remaining_free_slots_in_symbol_table</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我更喜欢使用下划线来分隔标识符（例如 element_count）里的单词，而非替换使用大小写，例如 elementCount 和 ElementCount。名字里的字母绝对不要全部都用大写（例如 BEGIN_TRANSACTION），因为全部大写习惯上是用于命名宏的。即使你不用宏，但其他人也许会在他们的头文件中引用你的头文件。命名类型时，最好大写首字母（例如 Square 和 Graph）。C++ 语言和标准库都不使用大写字母，因此 int 非 Int，string 非 String。这样，你就能很容易地辨认出哪些是标准类型，哪些是你定义的类型。 </p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;避免使用易于拼错、看错或混淆的名字。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nameS<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f00<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字符 0、o、O、1、l 以及 I 特别容易引起问题。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常，命名习惯的选择仅受限于局部的风格规则。切记，保持风格的一致性常常比使用你认为最好的方式处理各种小细节更为重要。
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#Hungarian</p>
+<hr><br>
+
+<b><font size="4"><a name="call-by-reference">我应该使用按值传递还是按引用传递？</a></font></b><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这取决于你到底想达到什么目的：</p><p>
+
+	</p><ul><ul>
+		<li> 如果你想改变被传递的对象，那就按引用传递或者使用指针；例如 void f(X&amp;); 或者 void f(X*); 
+		</li><li> 如果你并不想改变被传递的对象，但该对象很大，那就按常量引用传递；例如 void f(const X&amp;);
+		</li><li> 其它情况则应该按值传递；例如 void f(X);
+	</li></ul></ul>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>我所说的“大”为何解？</i>任何超过两个字长的对象。<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>我为何会想改变参数的值？</i>呃，通常我们不得不这样做，但通常我们也可用另一种方法：产生一个新的值。例如：</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void incr1(int&amp; x);	// increment<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int incr2(int x);	// increment</p><p>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int v = 2;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;incr1(v);	// v becomes 3<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v = incr2(v);	// v becomes 4</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我认为对于代码的阅读者来说，incr2() 更易于理解。亦即，incr1() 更易于导致误解和错误。因此，只要创建和复制一个新的值的开销并不“昂贵”，我更喜欢返回新值这种风格，而非那种修改值的风格。</p><p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>我的确想修改参数的值，那么我应该使用指针还是引用？</i>对此我并没有雄厚的符合逻辑的理由。如果传递“非对象”（例如空指针）是可接受的，那么使用指针是个不错的选择。我的个人风格是，当我想要改变对象的时候，我会使用指针，因为某些情况下，这样更易于看出是否潜在对象被修改的可能性。</p><p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意，调用成员函数本质上就是对对象进行按引用传递，所以，当我们想要改变对象的值/状态的时候，往往会使用成员函数。
+
+</p><p><b>原文地址</b>：http://www.research.att.com/~bs/bs_faq2.html#call-by-reference</p>
+<!-- contents end here -->
+
+
+
+</body></html>
