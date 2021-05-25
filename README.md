@@ -10,8 +10,8 @@
 
 ## Skills
 
+- [algo](./algo.md)
 - [cpp-concurrency](https://paul.pub/cpp-concurrency/)
-
 - [cpp-memory-model](https://paul.pub/cpp-memory-model/)
 
 ## CS
@@ -25,6 +25,7 @@
 ## Others
 
 - [intew](./intew.md)
+- [tech](./tech.md)
 
 
 
