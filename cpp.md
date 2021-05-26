@@ -325,6 +325,12 @@ virtual.
 
   3. 在头文件中放置内部链接的定义却是合法的，但不推荐使用的。因为头文件被包含到多个源文件中时，在每个编译单元中有自己的实体存在。大量消耗内存空间，还会影响机器性能。
 
+### struct && class
+
+- 默认继承权限。如果不明确指定，来自class的继承按照private继承处理，来自struct的继承按照public继承处理；
+- 默认访问权限。class的成员默认是private权限，struct默认是public权限。
+- class可以作为模板关键字，struct可以使用{}直接构造，class不可以
+
 ## Procedural Programming
 
 - local static object

@@ -1,3 +1,12 @@
+### 参考文献
+
+- [TLPI](./TLPI.MD)
+- [APUE](./APUE.MD)
+
+### [系统调用和库函数调用](https://blog.csdn.net/sinat_36053757/article/details/78171620)
+
+- [Linux syscall过程分析（万字长文）](https://cloud.tencent.com/developer/article/1492374)
+
 ### [进程和线程](https://blog.csdn.net/ThinkWon/article/details/102021274)
 
 - 进程
