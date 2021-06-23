@@ -1,7 +1,7 @@
 ### 参考文献
 
-- [TLPI](./TLPI.MD)
-- [APUE](./APUE.MD)
+- [TLPI](./TLPI.md)
+- [APUE](./APUE.md)
 
 ### [系统调用和库函数调用](https://blog.csdn.net/sinat_36053757/article/details/78171620)
 
@@ -157,6 +157,6 @@ TODO：
 
 ![异步IO](https://img2018.cnblogs.com/blog/1748170/201909/1748170-20190906211421376-2097741161.png)
 
-![img](https://img2018.cnblogs.com/blog/1748170/201909/1748170-20190906211429619-939802087.png)
+![阻塞I/O模型](https://img2018.cnblogs.com/blog/1748170/201909/1748170-20190906211429619-939802087.png)
 
-![img](https://img2018.cnblogs.com/blog/1748170/201909/1748170-20190906211436023-1996044746.png)
+![非阻塞I/O模型](https://img2018.cnblogs.com/blog/1748170/201909/1748170-20190906211436023-1996044746.png)
