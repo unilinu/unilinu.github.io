@@ -6,7 +6,7 @@
 ## Langs
 
 - [cpp](./cpp.md)
-- 
+- [latex](./latex.md)
 
 ## Skills
 

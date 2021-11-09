@@ -17,7 +17,7 @@ git revert <commitId> # 未尝试过
 
 ```sh
 git reset --soft <commitId>
-git stas # 暂存修改
+git stash # 暂存修改
 git push --force # 强制push,远程的最新commit被删除
 git stash pop # 释放暂存的修改，开始修改代码
 git add . -> git commit -m "massage" -> git push
