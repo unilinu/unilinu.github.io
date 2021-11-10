@@ -122,7 +122,7 @@ A simple way of doing it in BibTeX is with a `@misc` entry:
 
 ```tex
 @misc{WinNT,
-  title = {{MS Windows NT} Kernel Description},
+  title = { {MS Windows NT} Kernel Description},
   howpublished = {\url{http://www.808multimedia.com/winnt/kernel.htm}},
   note = {Accessed: 2010-09-30}
 }
@@ -137,7 +137,7 @@ If you are [using BibLaTeX](https://tex.stackexchange.com/questions/5091/what-to
 ```tex
 @online{WinNT,
   author = {MultiMedia LLC},
-  title = {{MS Windows NT} Kernel Description},
+  title = { {MS Windows NT} Kernel Description},
   year = 1999,
   url = {http://web.archive.org/web/20080207010024/http://www.808multimedia.com/winnt/kernel.htm},
   urldate = {2010-09-30}
