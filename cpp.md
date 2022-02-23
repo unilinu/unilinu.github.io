@@ -24,11 +24,10 @@
 ### QUEUE
 
 - [priority_queue](https://blog.csdn.net/weixin_36888577/article/details/79937886)
-
-    1. **优先级队列，优先级越大越优先，越先出队**
-    2. **也即是，队首优先级最高**
-    3. **默认数值越大，优先级越大**
-    4. **为了理解，可以认为，比较器第一个参数优先级低于第二个参数**
+    1. **优先级队列，按照优先级排队，默认数值越大，优先级越大**
+    3. **最大堆/大顶堆大优先级先出队，最小堆/小顶堆小优先级先出队**
+    3. **为了理解，可以认为，队首在右侧，这个取队首输出刚好倒过来**
+    4. **比较器第一个参数优先级低于第二个参数**
 
 ```cpp
 // 最大顶堆
@@ -416,6 +415,9 @@ virtual.
 
 - Generic Algorithms
 
+  
+  - [sort() reference](https://www.cplusplus.com/reference/algorithm/sort/)
+  
   ```cpp
   #include <algorithm>
   
